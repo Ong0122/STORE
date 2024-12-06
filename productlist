@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>产品展示</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .product {
+      border: 1px solid #ddd;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .product img {
+      max-width: 100%;
+    }
+    .contact {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>欢迎查看我们的产品</h1>
+  <div id="product-list"></div>
+
+  <div class="contact">
+    <h2>联系我们</h2>
+    <p>电话：<a href="tel:+60123456789">+60123456789</a></p>
+    <p>邮箱：<a href="mailto:info@example.com">info@example.com</a></p>
+    <p>或者通过以下表单联系我们：</p>
+    <form id="contact-form">
+      <label for="name">姓名：</label><br>
+      <input type="text" id="name" name="name" required><br><br>
+      <label for="message">留言：</label><br>
+      <textarea id="message" name="message" rows="5" required></textarea><br><br>
+      <button type="submit">提交</button>
+    </form>
+  </div>
+
+  <script>
+    // 示例产品数据
+    const products = [
+      { id: 1, name: "产品A", price: "RM100", image: "https://via.placeholder.com/150" },
+      { id: 2, name: "产品B", price: "RM200", image: "https://via.placeholder.com/150" },
+      { id: 3, name: "产品C", price: "RM300", image: "https://via.placeholder.com/150" }
+    ];
+
+    // 生成产品列表
+    const productList = document.getElementById('product-list');
+    products.forEach(product => {
+      const productDiv = document.createElement('div');
+      productDiv.className = 'product';
+      productDiv.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>价格：${product.price}</p>
+      `;
+      productList.appendChild(productDiv);
+    });
+
+    // 表单提交处理
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const message = document.getElementById('message').value;
+      alert(`感谢您的联系，${name}！您的留言是：${message}`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>
